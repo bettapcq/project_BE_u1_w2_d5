@@ -48,8 +48,9 @@ public class Application {
         collection.removeGameById("BG002");
         System.out.println("Dopo remove, collezione: " + collection);
 
-        System.out.println("\n--- TEST collectionStatistics ---");
+
         collection.collectionStatistics(collection);
+        System.out.println("prova statistica");
     }
 
 }
