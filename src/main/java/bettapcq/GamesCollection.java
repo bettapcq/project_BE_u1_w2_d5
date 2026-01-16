@@ -49,7 +49,7 @@ public class GamesCollection {
     public Game searchById(String id) {
         Boolean isPresent = gamesColl.stream().anyMatch(game -> game.getId().equals(id));
         if (isPresent) {
-            Game result = (Game) gamesColl.stream().filter(game -> game.getId().equals(id)).toList();
+            Game result = (Game) gamesColl.stream().filter(game -> game.getId().equals(id)).findFirst().get();
             return result;
         } else {
             throw new NotFoundException("L'Id che hai inserito non esiste!");
@@ -103,10 +103,10 @@ public class GamesCollection {
             Game gameToEdit = gamesColl.stream().filter(game -> game.getId().equals(id)).findFirst().get();
             if (gameToEdit instanceof VideoGame) {
                 VideoGame videoGToEdit = (VideoGame) gameToEdit;
-                editAVG(videoGToEdit);
+//                editAVG(videoGToEdit, );
             } else {
                 BoardGame boardGToEdit = (BoardGame) gameToEdit;
-                editABG(boardGToEdit);
+//                editABG(boardGToEdit);
             }
         } else {
             throw new NotFoundException("L'id che hai inserito non esiste!");
@@ -114,24 +114,7 @@ public class GamesCollection {
     }
 
     public void editAVG(VideoGame vG, String nT, Double nP, int nH, VideogameGenre nG) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Inizio modifiche:");
 
-        System.out.print("Nuovo titolo: ");
-        vG.setTitle(scanner.nextLine());
-
-        System.out.print("Nuovo prezzo: ");
-        vG.setPrice(scanner.nextDouble());
-
-
-        System.out.print("Nuove ore di gioco: ");
-        vG.getPlayHours(scanner.nextInt());
-
-
-        System.out.print("Nuovo genere: ");
-        vG.setGenre(VideogameGenre.valueOf(scanner.nextLine().toUpperCase()));
-
-        System.out.println("Gioco modificato!");
     }
 
     public void editABG(BoardGame bG, String nT, Double nP, int nG, Double nM) {
@@ -148,7 +131,7 @@ public class GamesCollection {
         System.out.println("- Il totale dei giochi presenti è: " + gamesTotNumber);
 
         //gioco più caro
-        Optional<Game> mostExpensiveGame = gamesColl.stream().sorted(Comparator.comparing(Game::getAge).reversed()).findFirst();
+        Optional<Game> mostExpensiveGame = gamesColl.stream().sorted(Comparator.comparing(Game::getPrice).reversed()).findFirst();
         if (mostExpensiveGame.isPresent()) {
             System.out.println("- Il gioco più costoso è : " + mostExpensiveGame);
         } else {
