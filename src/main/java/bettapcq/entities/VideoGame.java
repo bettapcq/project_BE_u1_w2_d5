@@ -22,7 +22,7 @@ public class VideoGame extends Game {
         this.platform = platform;
     }
 
-    public int getPlayHours() {
+    public int getPlayHours(int i) {
         return playHours;
     }
 
@@ -38,6 +38,7 @@ public class VideoGame extends Game {
         this.genre = genre;
     }
 
+
     @Override
     public String toString() {
         return "VideoGame{" +
@@ -46,5 +47,7 @@ public class VideoGame extends Game {
                 ", genre=" + genre +
                 '}';
     }
+
+
 }
 

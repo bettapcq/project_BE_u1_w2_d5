@@ -2,9 +2,9 @@ package bettapcq.entities;
 
 public class BoardGame extends Game {
     private int numberOfPlayers;
-    private int durationAverage;
+    private Double durationAverage;
 
-    public BoardGame(String id, String title, int year, Double price, int numberOfPlayers, int durationAverage) {
+    public BoardGame(String id, String title, int year, Double price, int numberOfPlayers, Double durationAverage) {
         super(id, title, year, price);
         if (numberOfPlayers < 2 || numberOfPlayers > 10) {
             throw new IllegalArgumentException("Il numero dev'essere min 2 e max 10");
@@ -21,11 +21,11 @@ public class BoardGame extends Game {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public int getDurationAverage() {
+    public Double getDurationAverage() {
         return durationAverage;
     }
 
-    public void setDurationAverage(int durationAverage) {
+    public void setDurationAverage(Double durationAverage) {
         this.durationAverage = durationAverage;
     }
 
